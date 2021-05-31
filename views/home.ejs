@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Homepage</h1>
+        <h2 style="margin-top: 50px;">Inserisci username</h2>
+        <form action="/getToken" method="post">
+            <input type="text" name="username" placeholder="Inserisci username" required>
+            <input type="submit" value="Autenticati">
+        </form>
+		
+        <h4 style="margin-top: 5%;"><b>Token</b>: </h4><p id="token"><%= token %></p><br>
+        <button type="button" onClick="copy()">Copy</button>
+		
+        <h2 style="margin-top: 5%;">Richiedi dati</h2>
+        <form action="/getPosts" method="post">
+            <input type="text" name="token" placeholder="Inserisci token" required>
+            <input type="submit" value="Preleva dati">
+        </form>
+    </div>
+    <script>
+        var copy = () => {
+            var tk = document.getElementById("token").innerHTML;
+            var input = document.createElement('input');
+            input.setAttribute('value', tk);
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+        }
+    </script>
+</body>
+</html>
